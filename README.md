@@ -1,160 +1,151 @@
 # AI Engineering Portfolio
 
-### Reliable LLM applications, controlled tool use, and tested workflows
+## Reliable AI-assisted applications and tested workflows
 
-I build and troubleshoot independent projects that combine AI services
-with practical software and data engineering.
+I build independent portfolio projects that combine AI services with
+software engineering, data validation, and human review.
 
-My focus is making AI-assisted applications easier to validate,
-debug, and operate—not simply connecting a prompt to an API.
+My focus is on creating applications that are transparent about their
+sources and limitations, and easier to test and troubleshoot.
 
-This portfolio documents my completed work, engineering decisions,
-and the capabilities I am developing next.
+## Featured Project 1: Document Knowledge Assistant
 
-## Featured project: AI-Assisted Sales Data Pipeline
+**Status: Working portfolio prototype**
+
+[View the Document Knowledge Assistant repository](https://github.com/kristielynn33/document-knowledge-assistant)
+
+A document question-answering prototype built with Python, Gemini,
+Streamlit, and scikit-learn. It uses two invented company-policy documents.
+
+```text
+Question
+   -> Local passage retrieval
+   -> Review the passages
+   -> Permission to send them to Gemini
+   -> Proposed answer or insufficient-evidence response
+   -> Display citations for human review
+```
+
+### What it demonstrates
+
+- Local TF-IDF passage retrieval.
+- A Streamlit browser interface.
+- Permission before sending questions and passages to Gemini.
+- Structured response and citation-ID validation.
+- Source excerpts displayed alongside proposed answers.
+- Insufficient-evidence handling for unsupported questions.
+- Offline retrieval evaluation and recorded human reviews.
+- Automated tests using simulated AI responses.
+- GitHub Actions continuous integration.
+
+### Verification checkpoint
+
+- **28 automated Python tests** passed locally.
+- The GitHub Actions workflow completed successfully.
+- Four sample retrieval questions found their expected passages in the
+  top three results.
+- Two selected live responses were manually reviewed: one supported
+  answer and one appropriate insufficient-evidence response.
+
+### Limitations
+
+These small evaluations do not establish general model accuracy.
+A valid citation ID does not by itself prove that the passage supports
+the answer. TF-IDF measures word similarity, not confidence.
+
+The project is a local prototype using invented documents—not a
+production service or a client deployment.
+
+## Featured Project 2: AI-Assisted Sales Data Pipeline
 
 **Status: Working portfolio MVP**
 
-[View the source code, documentation, Tableau screenshot, and audio walkthrough](https://github.com/kristielynn33/ai-assisted-sales-pipeline)
+[View the AI-Assisted Sales Data Pipeline repository](https://github.com/kristielynn33/ai-assisted-sales-pipeline)
 
 A supervised analytics workflow built with Python, Gemini, LangGraph,
 DuckDB, dbt, and Tableau.
 
 ```text
 Sales CSV
-    -> Cleaning and record validation
-    -> DuckDB warehouse
-    -> dbt models and data-quality checks
-    -> Verified reporting CSV
-    -> Tableau
+   -> Cleaning and record validation
+   -> DuckDB warehouse
+   -> dbt models and data-quality checks
+   -> Verified reporting CSV
+   -> Tableau
 ```
 
-### AI capabilities
+### AI and data capabilities
 
-- Proposes mappings for unfamiliar CSV headers.
-- Requires permission before requesting an AI proposal.
-- Requires human approval before applying header mappings.
-- Converts supported business questions into structured query plans.
-- Uses fixed, parameterized SQL instead of executing arbitrary
-  model-generated SQL.
-- Compares regional query results with the Tableau-ready reporting CSV
-  before displaying a verified answer.
+- Proposes mappings for unfamiliar CSV headers with human approval.
+- Validates sales records before loading and publishing data.
+- Builds staging and monthly reporting models in dbt.
+- Supports selected natural-language questions through structured plans.
+- Executes fixed, parameterized SQL using a read-only connection.
+- Reconciles regional query results against the Tableau-ready CSV.
 
-### Reliability and safeguards
+### Reliability and troubleshooting
 
-- Pydantic validation for records and query plans.
-- Read-only connections for answering questions.
-- Bounded retries for selected temporary API errors.
+- Bounded retries for selected temporary API failures.
 - Temporary-file verification before publishing CSV output.
-- Local run reports.
-- Automated tests and GitHub Actions continuous integration.
+- Local run reports and automated tests.
+- Diagnosed API availability and request-schema issues.
+- Resolved a dependency-download certificate issue without disabling
+  certificate verification.
+- Corrected Windows Git and PATH configuration issues.
 
 ### Verification checkpoint
 
-- 61 automated Python tests.
-- 17 separate dbt data tests.
-- GitHub Actions runs the Python tests and dependency checks.
-- January sample revenue reconciled at $4,650.50.
-- A saved Tableau visualization built from the reporting output.
+- **61 automated Python tests** passed locally.
+- **17 separate dbt data tests** passed in the reporting build.
+- GitHub Actions runs the Python test suite.
+- The sample January regional-revenue result reconciled at **$4,650.50**.
 
-The test counts describe software and data-quality checks.
-They are not a measurement of model accuracy.
+The repository includes documentation, a Tableau screenshot, and an
+audio walkthrough. It uses invented sales data.
 
-### Troubleshooting demonstrated
-
-- Diagnosed unavailable model responses and configured a working option.
-- Handled temporary API service errors with limited retries.
-- Resolved API request-schema incompatibilities while retaining
-  strict local validation.
-- Resolved a dependency-download certificate error without disabling
-  certificate verification.
-- Corrected Windows Git and PATH configuration issues.
-- Used error logs and automated tests to verify fixes.
-
-### Current scope
-
-This is an independent portfolio project using invented sales data,
-not a client deployment.
-
-AI assistance is limited to approved header mappings and supported
-regional-revenue questions. It does not repair arbitrary datasets
-or execute unrestricted SQL.
-
-Answer reconciliation checks the local reporting CSV, not the current
-state of an online Tableau dashboard.
-
-## Next project: Document Knowledge Assistant
-
-**Status: Planned — not implemented yet**
-
-A document question-answering application designed to answer from
-retrieved evidence and cite its sources.
-
-### Planned capabilities
-
-- Ingest a small collection of public or invented documents.
-- Split documents into searchable passages.
-- Retrieve relevant passages for a question.
-- Generate answers grounded in those passages.
-- Display source citations.
-- Identify questions that the available documents cannot answer.
-- Treat retrieved document content as untrusted data.
-- Evaluate retrieval and answer quality using a documented question set.
-
-### Planned evaluation
-
-- Retrieval relevance.
-- Citation correctness.
-- Whether answers are supported by the cited passages.
-- Handling of unsupported questions.
-- Response latency and API usage.
-
-Results will be published after implementation and measurement.
-No accuracy or cost-reduction claims are made in advance.
-
-## Skills demonstrated in completed work
+## Skills demonstrated
 
 ### AI application engineering
 
-- Gemini API integration.
-- Structured model outputs.
-- Local schema validation.
-- Human approval gates.
-- Restricted tool execution.
-- Error handling and bounded retries.
+- Gemini API integration
+- Retrieval-augmented question answering
+- Structured response validation
+- Source citations and human review
+- Permission gates and restricted tool use
+- Evaluation documentation and failure handling
 
 ### Software engineering
 
-- Python.
-- Modular tools and workflow nodes.
-- pytest.
-- Mocked service responses.
-- Git and GitHub.
-- GitHub Actions.
+- Python
+- pytest and simulated API responses
+- Git and GitHub Actions
+- Streamlit
+- Modular workflow components
 
 ### Data and analytics engineering
 
-- SQL and DuckDB.
-- dbt staging and reporting models.
-- Data contracts and quality checks.
-- Metric reconciliation.
-- Tableau reporting.
+- SQL and DuckDB
+- dbt models and data-quality checks
+- Pydantic data contracts
+- Metric reconciliation
+- Tableau reporting
 
 ## Engineering principles
 
 1. Validate model output before using it.
-2. Separate AI suggestions from actions.
-3. Give tools only the capabilities they need.
-4. Preserve verified output when publication fails.
-5. Test cancellation and failure paths, not just successful runs.
-6. Distinguish software tests from AI-quality evaluation.
+2. Show users what will be sent to an external AI service.
+3. Separate AI suggestions from actions.
+4. Give tools only the capabilities needed for their task.
+5. Test cancellation and failure paths—not only successful runs.
+6. Distinguish software-test results from measured AI-answer quality.
 7. Document limitations and avoid unsupported business claims.
 8. Keep credentials and confidential data out of public repositories.
 
-## Portfolio links
+## Project links
 
-- [Completed sales-pipeline project](https://github.com/kristielynn33/ai-assisted-sales-pipeline)
-- [GitHub repositories](https://github.com/kristielynn33?tab=repositories)
+- [Document Knowledge Assistant](https://github.com/kristielynn33/document-knowledge-assistant)
+- [AI-Assisted Sales Data Pipeline](https://github.com/kristielynn33/ai-assisted-sales-pipeline)
+- [All GitHub repositories](https://github.com/kristielynn33?tab=repositories)
 
-This portfolio presents independent project work. It does not imply
-client engagements or employment experience.
+These are independent portfolio projects. They do not imply client
+engagements, employment experience, or production deployments.
